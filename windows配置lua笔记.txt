@@ -1,0 +1,27 @@
+
+1、lua中文教程网站
+https://www.runoob.com/lua/lua-tutorial.html
+
+2、lua中文参考手册
+https://www.runoob.com/manual/lua53doc/
+
+3、下载lua 下载网址
+http://www.lua.org/download.html
+
+4、在vs中新建空项目，项目名lua。
+
+5、将lua中的src文件复制到vs项目中。
+我需要在lua项目中添加这些.c文件
+
+6、在lua项目中添加lua的c文件，点击生成
+
+7、找到lua.exe文件，点击执行。
+
+vs2017
+输出目录
+$(SolutionDir)..\bin\$(Platform)\$(Configuration)\
+中间目录
+$(SolutionDir)..\bintemp\$(Platform)\$(ProjectName)\$(Configuration)\
+
+
+
