@@ -1,0 +1,24 @@
+
+编写一个lua调用C++动态库的接口函数
+
+1、新建MyUtil空项目
+配置
+修改生成文件dll
+输出目录
+$(SolutionDir)..\bin\$(Platform)\$(Configuration)\
+中间目录
+$(SolutionDir)..\bintemp\$(Platform)\$(ProjectName)\$(Configuration)\
+配置 
+附加库目录
+$(SolutionDir)..\bin\$(Platform)\$(Configuration)\
+附加依赖项
+luadll.lib
+
+2、新建interface.cpp
+
+查看导出动态库
+dumpbin /exports MyUtil.dll
+
+3、写lua测试代码，
+local obj = require("MyUtil")
+print(obj.xqlSums(11, 22, 33, 44))
