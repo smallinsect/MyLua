@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{23F9DFE7-4BA3-42E0-9F16-F10C93A706D1}</ProjectGuid>
+    <ProjectGuid>{ECBF1598-FEEC-4C8E-A599-97FF4F3E51B5}</ProjectGuid>
     <RootNamespace>lua</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -97,6 +97,8 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>luadll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -106,6 +108,10 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>luadll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -114,6 +120,10 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>luadll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -127,43 +137,12 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>luadll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\luasrc\lapi.c" />
-    <ClCompile Include="..\luasrc\lauxlib.c" />
-    <ClCompile Include="..\luasrc\lbaselib.c" />
-    <ClCompile Include="..\luasrc\lbitlib.c" />
-    <ClCompile Include="..\luasrc\lcode.c" />
-    <ClCompile Include="..\luasrc\lcorolib.c" />
-    <ClCompile Include="..\luasrc\lctype.c" />
-    <ClCompile Include="..\luasrc\ldblib.c" />
-    <ClCompile Include="..\luasrc\ldebug.c" />
-    <ClCompile Include="..\luasrc\ldo.c" />
-    <ClCompile Include="..\luasrc\ldump.c" />
-    <ClCompile Include="..\luasrc\lfunc.c" />
-    <ClCompile Include="..\luasrc\lgc.c" />
-    <ClCompile Include="..\luasrc\linit.c" />
-    <ClCompile Include="..\luasrc\liolib.c" />
-    <ClCompile Include="..\luasrc\llex.c" />
-    <ClCompile Include="..\luasrc\lmathlib.c" />
-    <ClCompile Include="..\luasrc\lmem.c" />
-    <ClCompile Include="..\luasrc\loadlib.c" />
-    <ClCompile Include="..\luasrc\lobject.c" />
-    <ClCompile Include="..\luasrc\lopcodes.c" />
-    <ClCompile Include="..\luasrc\loslib.c" />
-    <ClCompile Include="..\luasrc\lparser.c" />
-    <ClCompile Include="..\luasrc\lstate.c" />
-    <ClCompile Include="..\luasrc\lstring.c" />
-    <ClCompile Include="..\luasrc\lstrlib.c" />
-    <ClCompile Include="..\luasrc\ltable.c" />
-    <ClCompile Include="..\luasrc\ltablib.c" />
-    <ClCompile Include="..\luasrc\ltm.c" />
     <ClCompile Include="..\luasrc\lua.c" />
-    <ClCompile Include="..\luasrc\lundump.c" />
-    <ClCompile Include="..\luasrc\lutf8lib.c" />
-    <ClCompile Include="..\luasrc\lvm.c" />
-    <ClCompile Include="..\luasrc\lzio.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

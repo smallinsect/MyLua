@@ -1,0 +1,14 @@
+Lua教程网址
+https://www.runoob.com/lua/lua-tutorial.html
+
+Lua中文参考手册
+https://www.runoob.com/manual/lua53doc/
+
+Lua中文参考手册目录
+https://www.runoob.com/manual/lua53doc/contents.html
+
+Lua中文参考手册内容
+https://www.runoob.com/manual/lua53doc/manual.html
+
+
+
