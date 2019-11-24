@@ -1,0 +1,28 @@
+vs2017
+输出目录
+$(SolutionDir)..\bin\$(Platform)\$(Configuration)\
+中间目录
+$(SolutionDir)..\bintemp\$(Platform)\$(ProjectName)\$(Configuration)\
+
+C/C++调用Lua
+
+1、lua_State *luaL_newstate (void);
+创建一个Lua状态机
+
+2、void luaL_openlibs (lua_State *L);
+打开指定状态机中的所有Lua标准库
+
+3、int luaL_dofile (lua_State *L, const char *filename);
+加载并运行指定的文件。
+
+4、int lua_getglobal (lua_State *L, const char *name);
+把全局变量name里的值压栈
+
+5、const char *lua_pushstring (lua_State *L, const char *s);
+将指针s指向的零结尾的字符串压栈
+
+6、void lua_call (lua_State *L, int nargs, int nresults);
+调用一个函数
+
+7、const char *lua_tostring (lua_State *L, int index);
+将栈中index位置的值，转换为字符串。
