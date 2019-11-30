@@ -50,29 +50,45 @@ int fun1() {
 	}
 	printf("listen success ...\n");
 
-	while (true) {
-		sockaddr_in caddr;
-		int addrlen = sizeof(caddr);
-		SOCKET cskt = accept(skt, (sockaddr*)&caddr, &addrlen);
-		if (cskt == INVALID_SOCKET) {
-			printf("accept error %d ...\n", GetLastError());
-			return -1;
-		}
-		printf("accept success ...\n");
+	fd_set fds;
+	FD_ZERO(&fds);
+	FD_SET(skt, &fds);
 
-		char buf[MAX_SIZE_BUF];
-		int irecv = recv(cskt, buf, sizeof(buf), 0);//接受浏览器请求的消息
-		if (irecv > 0) {
-			printf("%s\n", buf);
-			char page[] = "<html><body>爱白菜的小昆虫</body></html>";
-			int length = strlen(page);
-			char head[MAX_SIZE_BUF] = {0};
-			sprintf(head, "HTTP/1.1 200 OK\r\nContent-Length: %d\r\n\r\n", length);
-			send(cskt, head, strlen(head), 0);
-			send(cskt, page, strlen(page), 0);
+	timeval tv;
+	tv.tv_sec = 0;
+	tv.tv_usec = 1000;
+	while (true) {
+		fd_set readfds = fds;
+		if (select(0, &readfds, NULL, NULL, &tv) <= 0) {
+			continue;
 		}
-		//irecv=0 表示客户端退出 irecv=-1 表示客户端异常退出
-		closesocket(cskt);
+		for (u_int i = 0; i < readfds.fd_count; ++i) {
+			SOCKET tskt = readfds.fd_array[i];
+			if (tskt == skt) {//有新的客户端请求连接
+				SOCKET cskt = accept(skt, NULL, NULL);
+				if (cskt == INVALID_SOCKET) {
+					printf("accept error %d ...\n", GetLastError());
+					return -1;
+				}
+				printf("accept success ...\n");
+				FD_SET(cskt, &fds);
+				continue;
+			}
+			char buf[MAX_SIZE_BUF];
+			int irecv = recv(tskt, buf, sizeof(buf), 0);//接受浏览器请求的消息
+			if (irecv > 0) {
+				printf("%s\n", buf);
+				char page[] = "<html><head><title>爱白菜的小昆虫标题</title></head><body style='color:red;background:#eee;'>爱白菜的小昆虫</body></html>";
+				int length = strlen(page);
+				char head[MAX_SIZE_BUF] = { 0 };
+				sprintf(head, "HTTP/1.1 200 OK\r\nContent-Length: %d\r\n\r\n", length);
+				send(tskt, head, strlen(head), 0);
+				send(tskt, page, strlen(page), 0);
+			}
+			FD_CLR(tskt, &fds);
+			//irecv=0 表示客户端退出 irecv=-1 表示客户端异常退出
+			closesocket(tskt);
+		}
 	}
 
 	closesocket(skt);//关闭套接字
