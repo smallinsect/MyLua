@@ -1,0 +1,16 @@
+学习网站
+https://www.runoob.com/http/http-tutorial.html
+
+接受浏览器的请求
+
+1、socket创建套接字
+
+2、bind绑定套接字和ip还有端口
+
+3、listen监听套接字
+
+4、accept接受连接请求
+
+5、recv 接受请求的数据
+
+6、send发送数据 响应浏览器
