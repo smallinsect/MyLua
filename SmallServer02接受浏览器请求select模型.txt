@@ -1,0 +1,14 @@
+浏览器 HTTP 教程
+https://www.runoob.com/http/http-tutorial.html
+
+接受浏览器的请求
+
+fd_set集合
+FD_ZERO 初始化集合
+FD_SET 将指定的socket放入集合中
+FD_ISSET 判断指定的socket在集合中
+FD_CLR  删除集合中的指定的socket
+
+select模型
+timeval 超时时间
+
