@@ -58,13 +58,35 @@ bool WebServer::dispatch(SOCKET skt, char* buf, int length) {//分发消息
 	WebRequest webrequest;
 	webrequest.setParam(buf, strlen(buf)+1);
 
-	printf("%s\n", buf);
-	char page[] = "<html><head><title>爱白菜的小昆虫标题</title></head><body style='color:green;background:#eee;'>爱白菜的小昆虫</body></html>";
+	char responseBuf[MAX_SIZE_BUF] = { 0 };
+	int bufLen = sprintf(responseBuf, 
+		"HTTP/1.1 200 OK\r\n \
+		 Content-Type: %s\r\n", webrequest.getContentType()); //
 
-	char head[MAX_SIZE_BUF] = { 0 };
-	sprintf(head, "HTTP/1.1 200 OK\r\nContent-Length: %d\r\n\r\n", strlen(page));
-	send(skt, head, strlen(head), 0);
-	send(skt, page, strlen(page), 0);
+	FILE *fp = fopen(webrequest.file.c_str(), "rb");
+	if (fp == NULL) {//读取文件失败
+		char page[] = "<html><head><title>爱白菜的小昆虫标题</title></head><body style='color:green;background:#eee;'>爱白菜的小昆虫404</body></html>";
+
+		bufLen += sprintf(responseBuf + bufLen, "Content-Length: %d\r\n\r\n", strlen(page));
+		
+		send(skt, responseBuf, bufLen, 0);
+		send(skt, page, strlen(page), 0);
+		return true;
+	}
+
+	fseek(fp, 0, SEEK_END);//文件指针移至文件末尾，偏移量0
+	long contentLength = ftell(fp);//获取文件内容总字节数
+	fseek(fp, 0, SEEK_SET);//文件指针移至文件头，偏移量0
+
+	bufLen += sprintf(responseBuf + bufLen, "Content-Length: %d\r\n\r\n", contentLength);
+	send(skt, responseBuf, bufLen, 0);
+
+	size_t fl;
+	while ((fl = fread(responseBuf, sizeof(char), MAX_SIZE_BUF, fp)) > 0) {
+		send(skt, responseBuf, fl, 0);
+	}
+
+	fclose(fp);
 	return true;
 }
 
@@ -94,7 +116,7 @@ void WebServer::workthread(void* lpParam) {
 				webserver->dispatch(tskt, buf, strlen(buf));
 			}
 			FD_CLR(tskt, &webserver->m_fds);
-			//irecv=0 表示客户端退出 irecv=-1 表示客户端异常退出
+			//irecv=0 表示客户端退出 irecv=-1 表示客户端异常退出 
 			closesocket(tskt);
 		}
 	}

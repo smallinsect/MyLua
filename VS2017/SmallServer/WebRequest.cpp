@@ -10,18 +10,42 @@ void WebRequest::setParam(char *buf, int length) {
 	this->URI = URI;
 	this->httpver = httpver;
 
-	char type[16];
-	sscanf(URI, "%[^.].%[^ ?]", type, type);
-	this->type = type;
-
 	char file[MAX_PATH];
 	sscanf(URI, "/%[^ ?]", file);
-	this->file = "./";
+	this->file = "./webpage/";
 	this->file += file;
+
+	char type[16];
+	sscanf(URI, "%[^.].%[^ ?]", file, type);
+	this->type = type;
 }
 
 
 std::string WebRequest::getContentType() {
 	std::string contentType;
+	if (type == "html") {
+		contentType = "text/html";
+	}
+	else if (type == "css") {
+		contentType = "text/css";
+	}
+	else if (type == "js") {
+		contentType = "application/x-javascript";
+	}
+	else if (type == "jpg" || type == "jpeg") {
+		contentType = "image/jpeg";
+	}
+	else if (type == "png") {
+		contentType = "image/png";
+	}
+	else if (type == "gif") {
+		contentType = "image/gif";
+	}
+	else if (type == "json") {
+		contentType = "application/json";
+	}
+	else {
+		contentType = "text/plain";
+	}
 	return contentType;
 }
