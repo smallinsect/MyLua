@@ -10,3 +10,22 @@ https://www.runoob.com/cplusplus/cpp-web-programming.html
 c函数 sscanf函数
 https://www.runoob.com/cprogramming/c-function-sscanf.html
 
+正则表达式
+https://www.runoob.com/regexp/regexp-metachar.html
+
+浏览器请求消息
+//char buf[1024*256] = "GET /sc/index.html HTTP/1.1 \r\n";
+//char buf[1024*256] = "GET /sc/test.lua?fun=arg1,arg2 HTTP/1.1 \r\n"
+
+class WebRequest {
+public:
+	std::string method;//请求方法
+	std::string URI;//请求连接
+	std::string httpver;//版本
+	std::string type;//文件的类型
+	std::string file;//相对路径和文件名
+	std::string arg;//参数
+public:
+	void setParam(char *buf, int length);
+	std::string getContentType();
+};

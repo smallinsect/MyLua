@@ -55,6 +55,8 @@ void WebServer::stop() {//停止服务
 }
 
 bool WebServer::dispatch(SOCKET skt, char* buf, int length) {//分发消息
+	WebRequest webrequest;
+	webrequest.setParam(buf, strlen(buf)+1);
 
 	printf("%s\n", buf);
 	char page[] = "<html><head><title>爱白菜的小昆虫标题</title></head><body style='color:green;background:#eee;'>爱白菜的小昆虫</body></html>";
