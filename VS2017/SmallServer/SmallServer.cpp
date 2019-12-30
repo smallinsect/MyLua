@@ -23,9 +23,6 @@ int main() {
 	//char buf[1024 * 256] = "GET /sc/index.html HTTP/1.1 \r\n";
 	//char buf[1024 * 256] = "GET /sc/test.lua?fun=arg1,arg2 HTTP/1.1 \r\n";
 
-	//WebRequest webrequest;
-	//webrequest.setParam(buf, strlen(buf)+1);
-
 	system("pause");
 	return 0;
 }

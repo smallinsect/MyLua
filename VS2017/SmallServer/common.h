@@ -13,6 +13,7 @@
 #include <process.h>
 #include <conio.h>
 
+#include <vector>
 #include <string>
 
 #pragma comment(lib, "ws2_32.lib")

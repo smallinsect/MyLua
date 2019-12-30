@@ -1,0 +1,15 @@
+
+
+浏览器请求消息
+//char buf[1024*256] = "GET /sc/index.html HTTP/1.1 \r\n";
+//char buf[1024*256] = "GET /sc/test.lua?fun=arg1,arg2 HTTP/1.1 \r\n"
+
+C++ string类
+http://c.biancheng.net/view/400.html
+
+将arg1,arg2,arg3字符串分割，放入vector中
+#include <string>
+find：从前往后查找子串或字符出现的位置。
+substr 成员函数可以用于求子串 (n, m)，
+
+int WebServer::split(const std::string& str, std::vector<std::string>& vReturn, std::string sep);

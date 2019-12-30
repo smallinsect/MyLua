@@ -122,3 +122,19 @@ void WebServer::workthread(void* lpParam) {
 	}
 	printf("threadid=%lld end ..\n", webserver->threadid);
 }
+
+int WebServer::split(const std::string& str, std::vector<std::string>& vReturn, const std::string& sep) {
+	if (str.empty()) {
+		return 0;
+	}
+	size_t begin = 0;
+	while (begin < str.size()) {
+		size_t idx = str.find(sep, begin);
+		std::string tmp = str.substr(begin, idx - begin);
+		if (!tmp.empty()) {
+			vReturn.push_back(tmp);
+		}
+		begin = idx == std::string::npos ? idx : idx + sep.size();
+	}
+	return 0;
+}
