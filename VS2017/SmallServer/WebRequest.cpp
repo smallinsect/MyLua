@@ -11,13 +11,26 @@ void WebRequest::setParam(char *buf, int length) {
 	this->httpver = httpver;
 
 	char file[MAX_PATH];
-	sscanf(URI, "/%[^ ?]", file);
-	this->file = "./webpage/";
-	this->file += file;
-
 	char type[16];
 	sscanf(URI, "%[^.].%[^ ?]", file, type);
 	this->type = type;
+	sscanf(URI, "/%[^ ?]", file);
+	if (this->type == "lua") {
+		this->file = "./";//lua文件的路径
+	}
+	else {
+		this->file = "./webpage/";//网页页面路径
+	}
+	this->file += file;
+
+	if (this->method == "GET") {
+		char args[2048];
+		sscanf(URI, "%[^ ?]?%[^ ]", file, args);
+		this->arg = args;
+	}
+	else if (this->method == "POST"){
+
+	}
 }
 
 

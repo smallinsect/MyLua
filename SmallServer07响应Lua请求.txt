@@ -1,31 +1,14 @@
-浏览器 HTTP 教程
-https://www.runoob.com/http/http-tutorial.html
 
-HTTP协议结构
-https://www.cnblogs.com/ulysses-you/p/7837173.html
+Lua中文帮助文档
+https://www.runoob.com/manual/lua53doc/manual.html
 
-C++Web编程
-https://www.runoob.com/cplusplus/cpp-web-programming.html
+页面调用
+http://127.0.0.1:8000/index.lua?TestFunc=11,33
 
-正则表达式
-https://www.runoob.com/regexp/regexp-metachar.html
-
-C 库函数 - <stdio.h>
-https://www.runoob.com/cprogramming/c-standard-library-stdio-h.html
-C 库函数 - fseek()
-https://www.runoob.com/cprogramming/c-function-fseek.html
-C 库函数 - ftell()
-https://www.runoob.com/cprogramming/c-function-ftell.html
-C 库函数 - fread()
-https://www.runoob.com/cprogramming/c-function-fread.html
-
-浏览器请求消息
-//char buf[1024*256] = "GET /sc/index.html HTTP/1.1 \r\n";
-//char buf[1024*256] = "GET /sc/test.lua?fun=arg1,arg2 HTTP/1.1 \r\n"
-
-C++文档
-https://www.runoob.com/cplusplus/cpp-useful-resources.html
-
-
+file:lua文件
+func:lua函数
+args:传递的参数
+szReturn:lua函数返回值
+void execute(const char* file, const char* func, const char* args, std::string& szReturn);
 
 

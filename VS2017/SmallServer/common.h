@@ -16,6 +16,8 @@
 #include <vector>
 #include <string>
 
+#include "../luasrc/lua.hpp"
+
 #pragma comment(lib, "ws2_32.lib")
 
 #define MAX_SIZE_BUF 1024*256

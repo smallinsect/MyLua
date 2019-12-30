@@ -11,6 +11,7 @@ public:
 	void stop();//停止服务
 
 	int split(const std::string& str, std::vector<std::string>& vReturn, const std::string& sep);
+	void execute(const char* file, const char* func, const char* args, std::string& szReturn);
 private:
 	bool dispatch(SOCKET skt, char* buf, int length);//分发消息
 	static void workthread(void* lpParam);

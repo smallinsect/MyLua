@@ -63,6 +63,21 @@ bool WebServer::dispatch(SOCKET skt, char* buf, int length) {//分发消息
 		"HTTP/1.1 200 OK\r\n \
 		 Content-Type: %s\r\n", webrequest.getContentType()); //
 
+	if (webrequest.type == "lua") {
+		//TestFunc=11,33
+		size_t idx = webrequest.arg.find("=");
+		std::string func = webrequest.arg.substr(0, idx);
+		std::string args = webrequest.arg.substr(idx+1);
+		std::string szReturn;
+		execute(webrequest.file.c_str(), func.c_str(), args.c_str(), szReturn);
+
+		bufLen += sprintf(responseBuf + bufLen, "Content-Length: %d\r\n\r\n", szReturn.size());
+		send(skt, responseBuf, bufLen, 0);//响应头信息
+
+		send(skt, szReturn.c_str(), szReturn.size(), 0);//响应内容
+		return true;
+	}
+
 	FILE *fp = fopen(webrequest.file.c_str(), "rb");
 	if (fp == NULL) {//读取文件失败
 		char page[] = "<html><head><title>爱白菜的小昆虫标题</title></head><body style='color:green;background:#eee;'>爱白菜的小昆虫404</body></html>";
@@ -137,4 +152,43 @@ int WebServer::split(const std::string& str, std::vector<std::string>& vReturn, 
 		begin = idx == std::string::npos ? idx : idx + sep.size();
 	}
 	return 0;
+}
+
+void WebServer::execute(const char* file, const char* func, const char* args, std::string& szReturn) {
+	printf("%s:%s(%s)\n", file, func, args);
+	//拆分参数
+	std::vector<std::string> vargs;
+	split(args, vargs, ",");
+	//创建状态机
+	lua_State* L = luaL_newstate();
+	if (L == NULL) {
+		printf("luaL_newstate error ...\n");
+		return;
+	}
+	//打开指定状态机中的所有 Lua 标准库
+	luaL_openlibs(L);
+	//加载lua文件
+	if (luaL_dofile(L, file)) {
+		printf("luaL_dofile error ...\n");
+		return;
+	}
+	//将函数名压入栈中
+	lua_getglobal(L, func);
+	//把参数压入栈中
+	for (size_t i = 0; i < vargs.size(); ++i) {
+		lua_pushstring(L, vargs[i].c_str());
+	}
+	//调用函数
+	if (lua_pcall(L, vargs.size(), 1, 0) != LUA_OK) {
+		printf("lua_pcall error ...\n");
+		return;
+	}
+	//调用函数后，函数返回的值在栈顶。
+	//将栈顶值转换为字符串
+	const char* ret = (const char*)lua_tostring(L, -1);
+	if (ret == NULL) {
+		printf("lua_tostring error ...\n");
+		return;
+	}
+	szReturn = ret;
 }
