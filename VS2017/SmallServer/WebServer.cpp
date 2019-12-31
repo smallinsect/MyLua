@@ -60,9 +60,9 @@ bool WebServer::dispatch(SOCKET skt, char* buf, int length) {//分发消息
 
 	char responseBuf[MAX_SIZE_BUF] = { 0 };
 	int bufLen = sprintf(responseBuf, 
-		"HTTP/1.1 200 OK\r\n \
-		 Content-Type: %s\r\n", webrequest.getContentType()); //
-
+		"HTTP/1.1 200 OK\r\n\
+Content-Type: %s; charset=gb2312\r\n", webrequest.getContentType().c_str()); //
+	//Content-Type: image/png
 	if (webrequest.type == "lua") {
 		//TestFunc=11,33
 		size_t idx = webrequest.arg.find("=");

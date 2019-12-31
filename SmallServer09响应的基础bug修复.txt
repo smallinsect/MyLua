@@ -1,0 +1,6 @@
+
+charset=gb2312响应信息编码，如果不加，中文会乱码，如果返回时utf-8，那就是charset=utf-8
+响应信息中，\r\n后紧接着下一个，不能有空格，制表符。
+"HTTP/1.1 200 OK\r\n\
+Content-Type: %s; charset=gb2312\r\n"
+
