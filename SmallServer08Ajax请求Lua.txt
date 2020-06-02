@@ -1,0 +1,36 @@
+AJAX 教程
+https://www.runoob.com/ajax/ajax-tutorial.html
+
+AJAX 教程
+https://www.w3cschool.cn/ajax/ajax-3jvp31ue.html
+
+//创建对象
+function GetXmlHttp() {
+    if (window.XMLHttpRequest){
+        return new XMLHttpRequest();//IE7+, Firefox, Chrome, Opera, Safari
+    }
+    return new ActiveXObject("Microsoft.XMLHTTP");//IE6, IE5
+}
+
+//GET请求
+//url:请求链接 /test.lua?fun=arg1,arg2
+//async: true（异步）或 false（同步）
+//callfunc:回调函数
+function RunAjaxGET(url,async,callfunc){
+    var xmlhttp = GetXmlHttp();
+    xmlhttp.open("GET", url, async);  
+    xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            callfunc(xmlhttp.responseText);
+        }
+    }
+    xmlhttp.send(null);
+}
+
+function TestAjax(){
+    RunAjaxGET("index.lua?TestFunc=11,44,爱白菜的小昆虫", true, function(responseText){
+        var json = eval('(' + responseText + ')');
+        console.log(json);
+    });
+}

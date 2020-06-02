@@ -1,0 +1,14 @@
+
+Lua中文帮助文档
+https://www.runoob.com/manual/lua53doc/manual.html
+
+页面调用
+http://127.0.0.1:8000/index.lua?TestFunc=11,33
+
+file:lua文件
+func:lua函数
+args:传递的参数
+szReturn:lua函数返回值
+void execute(const char* file, const char* func, const char* args, std::string& szReturn);
+
+
