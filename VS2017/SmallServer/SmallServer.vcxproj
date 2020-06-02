@@ -22,32 +22,52 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3A687DFB-E991-44A1-807F-40399C52A72B}</ProjectGuid>
     <RootNamespace>SmallServer</RootNamespace>
+<<<<<<< HEAD
     <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+=======
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+>>>>>>> 030d77d2be5c445ee2cbb69069de15295efa38cb
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+<<<<<<< HEAD
     <PlatformToolset>v142</PlatformToolset>
+=======
+    <PlatformToolset>v141</PlatformToolset>
+>>>>>>> 030d77d2be5c445ee2cbb69069de15295efa38cb
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
+<<<<<<< HEAD
     <PlatformToolset>v142</PlatformToolset>
+=======
+    <PlatformToolset>v141</PlatformToolset>
+>>>>>>> 030d77d2be5c445ee2cbb69069de15295efa38cb
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+<<<<<<< HEAD
     <PlatformToolset>v142</PlatformToolset>
+=======
+    <PlatformToolset>v141</PlatformToolset>
+>>>>>>> 030d77d2be5c445ee2cbb69069de15295efa38cb
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
+<<<<<<< HEAD
     <PlatformToolset>v142</PlatformToolset>
+=======
+    <PlatformToolset>v141</PlatformToolset>
+>>>>>>> 030d77d2be5c445ee2cbb69069de15295efa38cb
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
